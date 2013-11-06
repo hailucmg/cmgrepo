@@ -9,9 +9,9 @@
 	  <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>com.android.gcm</groupId>
-  <artifactId>com.android.gcm</artifactId>
-  <version>1.0.0</version>
-  <name>GCM Client</name>
+  <artifactId>com.android.gcm.server</artifactId>
+  <version>1.0</version>
+  <name>GCM Server</name>
   <packaging>pom</packaging>
   <build>
 	<plugins>	
