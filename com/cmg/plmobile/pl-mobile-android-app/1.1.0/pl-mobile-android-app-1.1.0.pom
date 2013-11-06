@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2013. CMG Ltd All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of CMG
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with CMG.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cmg.plmobile</groupId>
+        <artifactId>pl-mobile</artifactId>
+        <version>1.1.0</version>
+        <relativePath>../pl-mobile/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>pl-mobile-android-app</artifactId>
+    <packaging>apk</packaging>
+    <name>PL Mobile Android App</name>
+    <description>The Android application module</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google</groupId>
+            <artifactId>com.google.analytics</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>at.technikum.mti.fancycoverflow</groupId>
+            <artifactId>at.technikum.mti.fancycoverflow</artifactId>
+            <type>apklib</type>
+        </dependency>
+        <dependency>
+            <groupId>com.pagesuite</groupId>
+            <artifactId>com.pagesuite.flowtext</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nostra13.universalimageloader</groupId>
+            <artifactId>universal-image-loader</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.cmg.android</groupId>-->
+            <!--<artifactId>cmg-android-book-reader</artifactId>-->
+            <!--<type>jar</type>-->
+        <!--</dependency>-->
+        <!-- <dependency> <groupId>com.cmg.android</groupId> <artifactId>cmgdroid</artifactId>
+            <type>apklib</type> </dependency> -->
+        <dependency>
+            <groupId>com.cmg.android</groupId>
+            <artifactId>cmg-android-pdf-reader</artifactId>
+            <type>apklib</type>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cmg.android</groupId>
+            <artifactId>cmgpdf</artifactId>
+            <type>apklib</type>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>actionbarsherlock</artifactId>
+            <type>apklib</type>
+            <exclusions>
+                <exclusion>
+                    <artifactId>support-v4</artifactId>
+                    <groupId>com.google.android</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>de.mindpipe.android</groupId>
+            <artifactId>android-logging-log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.android.gcm</groupId>
+            <artifactId>com.android.gcm</artifactId>
+            <type>jar</type>
+        </dependency>
+        <!-- <dependency> <groupId>com.google.android</groupId> <artifactId>android</artifactId>
+            <scope>provided</scope> </dependency> -->
+        <dependency>
+            <groupId>android</groupId>
+            <artifactId>android</artifactId>
+            <version>4.3_r2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android-test</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cmg.plmobile</groupId>
+            <artifactId>pl-mobile-module-core</artifactId>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>support-v13</artifactId>
+            <version>r18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.markdownj4</groupId>
+            <artifactId>org.markdownj4</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jarsigner-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>signing</id>
+                        <goals>
+                            <goal>sign</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <removeExistingSignatures>true</removeExistingSignatures>
+                            <archiveDirectory />
+                            <includes>
+                                <include>
+                                    ${project.build.directory}/${project.artifactId}-${project.version}${build.number}.apk
+                                </include>
+                            </includes>
+                            <keystore>${sign.keystore}</keystore>
+                            <alias>${sign.alias}</alias>
+                            <storepass>${sign.storepass}</storepass>
+                            <keypass>${sign.keypass}</keypass>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>init-res</id>
+                        <!-- use the copy resources instead of resources, which adds it to
+                            the eclipse buildpath -->
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/res</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/templates/res</directory>
+                                    <targetPath>${project.basedir}/res</targetPath>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>init-java</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/templates/java</directory>
+                                    <targetPath>${project.basedir}/src/main/java</targetPath>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>3.6.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <manifest>
+                        <debuggable>true</debuggable>
+                    </manifest>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>manifestUpdate</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>manifest-update</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>alignApk</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>zipalign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>development</id>
+            <!-- using this since activeByDefault does not work well with multiple
+                profiles -->
+            <activation>
+                <property>
+                    <name>environment</name>
+                    <value>!production</value>
+                </property>
+            </activation>
+            <properties>
+                <deployment.stage>In Development</deployment.stage>
+            </properties>
+            <!-- <build> -->
+            <!-- <plugins> -->
+            <!-- <plugin> -->
+            <!-- <groupId>com.jayway.maven.plugins.android.generation2</groupId> -->
+            <!-- <artifactId>android-maven-plugin</artifactId> -->
+            <!-- <inherited>true</inherited> -->
+            <!-- <executions> -->
+            <!-- <execution> -->
+            <!-- <id>androidDeploy</id> -->
+            <!-- <phase>install</phase> -->
+            <!-- <goals> -->
+            <!-- <goal>deploy</goal> -->
+            <!-- </goals> -->
+            <!-- </execution> -->
+            <!-- <execution> -->
+            <!-- <id>androidRun</id> -->
+            <!-- <phase>install</phase> -->
+            <!-- <goals> -->
+            <!-- <goal>run</goal> -->
+            <!-- </goals> -->
+            <!-- </execution> -->
+            <!-- </executions> -->
+            <!-- </plugin> -->
+            <!-- </plugins> -->
+            <!-- </build> -->
+        </profile>
+        <profile>
+            <id>production</id>
+            <properties>
+                <deployment.stage>In Production</deployment.stage>
+            </properties>
+        </profile>
+        <profile>
+            <id>testing</id>
+            <activation>
+                <property>
+                    <name>performTesting</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <!-- <build> -->
+            <!-- <plugins> -->
+            <!-- <plugin> -->
+            <!-- <groupId>com.jayway.maven.plugins.android.generation2</groupId> -->
+            <!-- <artifactId>android-maven-plugin</artifactId> -->
+            <!-- <inherited>true</inherited> -->
+            <!-- <executions> -->
+            <!-- <execution> -->
+            <!-- <id>androidRun</id> -->
+            <!-- <phase>install</phase> -->
+            <!-- <goals> -->
+            <!-- <goal>deploy</goal> -->
+            <!-- </goals> -->
+            <!-- </execution> -->
+            <!-- </executions> -->
+            <!-- </plugin> -->
+            <!-- </plugins> -->
+            <!-- </build> -->
+        </profile>
+        <profile>
+            <id>release</id>
+            <!-- via this activation the profile is automatically used when the release
+                is done with the maven release plugin -->
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>clean-project-packing</id>
+                                <phase>clean</phase>
+                                <configuration>
+                                    <tasks>
+                                        <delete dir="../packing" quiet="true" />
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>init-project-packing</id>
+                                <phase>install</phase>
+                                <configuration>
+                                    <tasks>
+                                        <mkdir dir="../packing"></mkdir>
+                                        <mkdir dir="../packing/${project.version}"></mkdir>
+                                        <copy overwrite="true" file="../ci/VERSION"
+                                            todir="../packing" />
+                                        <copy overwrite="true" file="../CHANGELOG.md"
+                                            todir="../packing/${project.version}" />
+                                        <copy overwrite="true" file="../CHANGELOG.md"
+                                            todir="../packing/" />
+                                        <copy overwrite="true" file="../README.md"
+                                            todir="../packing" />
+                                        <copy overwrite="true"
+                                            file="${project.build.directory}/${project.artifactId}-r-${project.version}${build.number}.apk"
+                                            todir="../packing/${project.version}" />
+                                        <copy overwrite="true"
+                                            file="${project.build.directory}/${project.artifactId}-r-${project.version}${build.number}.apk"
+                                            todir="../packing" />
+                                        <move
+                                            file="../packing/${project.artifactId}-r-${project.version}${build.number}.apk"
+                                            tofile="../packing/app.apk" />
+                                        <replace file="../packing/VERSION">
+                                            <replacetoken><![CDATA[%PROJECT_NAME%]]></replacetoken>
+                                            <replacevalue><![CDATA[${project.name}]]></replacevalue>
+                                        </replace>
+                                        <replace file="../packing/VERSION">
+                                            <replacetoken><![CDATA[%VERSION_NAME%]]></replacetoken>
+                                            <replacevalue>
+                                                <![CDATA[${project.version}${build.number}]]></replacevalue>
+                                        </replace>
+                                        <replace file="../packing/VERSION">
+                                            <replacetoken><![CDATA[%CHANGELOG%]]></replacetoken>
+                                            <replacevalue>
+                                                <![CDATA[${project.version}/CHANGELOG.md]]></replacevalue>
+                                        </replace>
+                                        <replace file="../packing/VERSION">
+                                            <replacetoken><![CDATA[%APK_FILE%]]></replacetoken>
+                                            <replacevalue>
+                                                <![CDATA[${project.version}/${project.artifactId}-r-${project.version}${build.number}.apk]]></replacevalue>
+                                        </replace>
+                                    </tasks>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- the signed apk then needs to be zipaligned and we activate proguard
+                        and we run the manifest update -->
+                    <plugin>
+                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <artifactId>android-maven-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <sign>
+                                <debug>false</debug>
+                            </sign>
+                            <zipalign>
+                                <skip>false</skip>
+                                <verbose>true</verbose>
+                                <inputApk>
+                                    ${project.build.directory}/${project.artifactId}-${project.version}.apk
+                                </inputApk>
+                                <outputApk>
+                                    ${project.build.directory}/${project.artifactId}-r-${project.version}${build.number}.apk
+                                </outputApk>
+                            </zipalign>
+                            <manifest>
+                                <debuggable>false</debuggable>
+                                <versionCodeAutoIncrement>true</versionCodeAutoIncrement>
+                            </manifest>
+                            <proguard>
+                                <skip>false</skip>
+                            </proguard>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>manifestUpdate</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>manifest-update</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>alignApk</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>zipalign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>
+                                        ${project.build.directory}/${project.artifactId}-r-${project.version}${build.number}.apk
+                                    </file>
+                                    <type>apk</type>
+                                    <classifier>signed-aligned</classifier>
+                                </artifact>
+                                <artifact>
+                                    <file>${project.build.directory}/proguard/mapping.txt</file>
+                                    <type>map</type>
+                                    <classifier>release</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-signed-aligned</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>attach-artifact</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
