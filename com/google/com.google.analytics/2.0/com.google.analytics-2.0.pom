@@ -8,10 +8,10 @@
 	  <version>1.0.0</version>
 	  <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>com.android.gcm</groupId>
-  <artifactId>com.android.gcm.server</artifactId>
-  <version>1.0</version>
-  <name>GCM Server</name>
+  <groupId>com.google</groupId>
+  <artifactId>com.google.analytics</artifactId>
+  <version>2.0</version>
+  <name>Google Analytics</name>
   <packaging>pom</packaging>
   <build>
 	<plugins>	
