@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.nostra13.universalimageloader</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.8.5-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20131106.031207</timestamp>
+      <buildNumber>2</buildNumber>
+    </snapshot>
+    <lastUpdated>20131106031207</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.8.5-20131106.031207-2</value>
+        <updated>20131106031207</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>
