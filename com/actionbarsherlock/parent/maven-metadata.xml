@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.cmg.thirdparty</groupId>
+  <groupId>com.actionbarsherlock</groupId>
   <artifactId>parent</artifactId>
   <versioning>
-    <release>1.0.0</release>
+    <release>4.3.1</release>
     <versions>
-      <version>1.0.0</version>
+      <version>4.3.1</version>
     </versions>
-    <lastUpdated>20131106033133</lastUpdated>
+    <lastUpdated>20131106033139</lastUpdated>
   </versioning>
 </metadata>
