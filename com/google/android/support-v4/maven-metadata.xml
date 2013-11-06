@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.google.android</groupId>
+  <artifactId>support-v4</artifactId>
+  <versioning>
+    <release>r18</release>
+    <versions>
+      <version>r18</version>
+    </versions>
+    <lastUpdated>20131106031318</lastUpdated>
+  </versioning>
+</metadata>

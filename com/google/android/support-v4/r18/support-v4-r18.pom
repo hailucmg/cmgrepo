@@ -8,10 +8,14 @@
 	  <version>1.0.0</version>
 	  <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>org.markdownj4</groupId>
-  <artifactId>org.markdownj4</artifactId>
-  <version>2.2</version>
-  <name>Markdown4j</name>
+
+
+  <groupId>com.google.android</groupId>
+  <artifactId>support-v4</artifactId>
+  <version>r18</version>
+
+
+  <name>android-support-v4</name>
   <packaging>pom</packaging>
   <build>
 	<plugins>	
@@ -31,7 +35,7 @@
 						<artifactId>${project.artifactId}</artifactId>
 						<groupId>${project.groupId}</groupId>
 						<version>${project.version}</version>
-						<file>bin.jar</file>
+						<file>android-support-v4.jar</file>
 					</configuration>
 				</execution>
 			</executions>
