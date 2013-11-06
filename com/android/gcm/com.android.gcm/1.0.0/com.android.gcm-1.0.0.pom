@@ -8,11 +8,11 @@
 	  <version>1.0.0</version>
 	  <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>com.pagesuite</groupId>
-  <artifactId>com.pagesuite.flowtext</artifactId>
-  <version>1.0.1</version>
-  <name>Flow text</name>
-  <packaging>pom</packaging>  
+  <groupId>com.android.gcm</groupId>
+  <artifactId>com.android.gcm</artifactId>
+  <version>1.0.0</version>
+  <name>GCM Client</name>
+  <packaging>pom</packaging>
   <build>
 	<plugins>	
 		<plugin>
