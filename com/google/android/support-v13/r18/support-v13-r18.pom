@@ -11,11 +11,11 @@
 
 
   <groupId>com.google.android</groupId>
-  <artifactId>support-v4</artifactId>
+  <artifactId>support-v13</artifactId>
   <version>r18</version>
 
 
-  <name>android-support-v4</name>
+  <name>android-support-v13</name>
   <packaging>pom</packaging>
   <build>
 	<plugins>	
@@ -35,7 +35,7 @@
 						<artifactId>${project.artifactId}</artifactId>
 						<groupId>${project.groupId}</groupId>
 						<version>${project.version}</version>
-						<file>android-support-v4.jar</file>
+						<file>android-support-v13.jar</file>
 					</configuration>
 				</execution>
 			</executions>
