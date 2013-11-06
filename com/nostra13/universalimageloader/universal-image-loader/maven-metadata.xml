@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
   <groupId>com.nostra13.universalimageloader</groupId>
-  <artifactId>parent</artifactId>
+  <artifactId>universal-image-loader</artifactId>
   <versioning>
     <versions>
       <version>1.8.5-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20131106033212</lastUpdated>
+    <lastUpdated>20131106033224</lastUpdated>
   </versioning>
 </metadata>
